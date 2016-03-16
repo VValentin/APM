@@ -9,7 +9,7 @@
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-default">
+        <div class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -20,27 +20,18 @@
                     </button>
                     <a class="navbar-brand" href="{{ url('index/') }}" title="APM">APM</a>
                 </div>
-                <div id="navbar" class="collapse navbar-collapse">
+                <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
-                    <form class="navbar-form navbar-right" action="{{ url('signup/') }}">
-                        <button type="submit" class="btn btn-success">Create account</button>
-                    </form>
                     <form class="navbar-form navbar-right" action="{{ url('signin/') }}">
-                        <div class="form-group">
-                            <input type="text" placeholder="Email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-success">Sign in</button>
+                        <button type="submit" class="btn btn-primary">Sign in</button>
                     </form>
-                </div>
+                </div><!--/.navbar-collapse -->
             </div>
-        </nav>
+        </div>
         {{ flash.output() }}
         {% block content %}   
         {% endblock %}

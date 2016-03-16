@@ -15,5 +15,11 @@ class IndexController extends ControllerBase
         Tag::setTitle('Home');
         Parent::initialize();
     }
+    
+    public function signoutAction()
+    {
+        $this->session->destroy();
+        $this->response->redirect('index/');
+    }
 }
 

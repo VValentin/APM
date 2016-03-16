@@ -32,6 +32,7 @@ class Permission extends Plugin
     
     public function beforeExecuteRoute(Event $event, Dispatcher $dispatcher)
     {
+        // Get the current role
         $role = $this->session->get('role');
         
         if (!$role) { 
@@ -73,8 +74,6 @@ class Permission extends Plugin
             foreach ($roles AS $role) {
                 $acl->addRole($role);
             }
-            
-            
             
             // Public resources
             foreach ($this->_publicResources AS $resource => $action) {

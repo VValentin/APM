@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <?php echo $this->assets->outputCss('style'); ?>
         
-        
+        <?php echo $this->assets->outputCss('additional'); ?>
+
     </head>
     <body>
         <div class="navbar navbar-default navbar-static-top">
@@ -33,14 +34,30 @@
             </div>
         </div>
         <?php echo $this->flash->output(); ?>
-        
-        <div class="container">
-            <div class="jumbotron">
-                <h1>APM</h1>
-                <p>Welcome</p>
-                <p><a class="btn btn-success btn-lg" href="<?php echo $this->url->get('signin/create'); ?>" role="button">Create account</a></p>
+         
+        <form class="form-signin" method="post" action="<?php echo $this->url->get('signin/doSignin'); ?>">
+            
+            <h2 class="form-signin-heading">Please sign in</h2>
+            
+            <label for="inputEmail" class="sr-only">
+                Email address
+            </label>
+            <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required>
+            
+            <label for="inputPassword" class="sr-only">
+                Password
+            </label>
+            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+            <input type="hidden" name="<?php echo $this->security->getTokenKey(); ?>" value="<?php echo $this->security->getToken(); ?>" />
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
             </div>
-        </div>
+            
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            
+        </form>
 
         <?php echo $this->assets->outputJs('js'); ?>
     </body>
