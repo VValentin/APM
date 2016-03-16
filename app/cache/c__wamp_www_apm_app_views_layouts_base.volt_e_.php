@@ -1,12 +1,12 @@
-a:5:{i:0;s:272:"<!DOCTYPE html>
+a:5:{i:0;s:265:"<!DOCTYPE html>
 <html lang="en">
     <head>
         <?php echo $this->tag->getTitle(); ?>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <?php echo $this->assets->outputCss('style'); ?>
-        ";s:4:"head";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:10:"
-        ";s:4:"file";s:43:"C:\wamp\www\apm/app/views/layouts\base.volt";s:4:"line";i:9;}}i:1;s:1443:"
+        ";s:4:"head";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:9:"
+        ";s:4:"file";s:43:"C:\wamp\www\APM/app/views/layouts\base.volt";s:4:"line";i:9;}}i:1;s:1416:"
     </head>
     <body>
         <div class="navbar navbar-default navbar-static-top">
@@ -33,8 +33,8 @@ a:5:{i:0;s:272:"<!DOCTYPE html>
             </div>
         </div>
         <?php echo $this->flash->output(); ?>
-        ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:13:"   
-        ";s:4:"file";s:43:"C:\wamp\www\apm/app/views/layouts\base.volt";s:4:"line";i:37;}}i:2;s:76:"
+        ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:12:"   
+        ";s:4:"file";s:43:"C:\wamp\www\APM/app/views/layouts\base.volt";s:4:"line";i:37;}}i:2;s:73:"
         <?php echo $this->assets->outputJs('js'); ?>
     </body>
 </html>";}

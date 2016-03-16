@@ -6,7 +6,7 @@ a:5:{i:0;s:265:"<!DOCTYPE html>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <?php echo $this->assets->outputCss('style'); ?>
         ";s:4:"head";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:9:"
-        ";s:4:"file";s:49:"C:\wamp\www\APM/app/views/layouts\base_admin.volt";s:4:"line";i:9;}}i:1;s:1428:"
+        ";s:4:"file";s:53:"C:\wamp\www\APM/app/views/layouts\base_dashboard.volt";s:4:"line";i:9;}}i:1;s:1544:"
     </head>
     <body>
         <div class="navbar navbar-default navbar-static-top">
@@ -18,12 +18,13 @@ a:5:{i:0;s:265:"<!DOCTYPE html>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo $this->url->get('admin/'); ?>" title="APM">APM</a>
+                    <a class="navbar-brand" href="<?php echo $this->url->get('dashboard/'); ?>" title="APM">APM</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="<?php echo $this->url->get('admin/'); ?>">Home</a></li>
-                        <li><a href="<?php echo $this->url->get('users/'); ?>">Users</a></li>
+                        <li><a href="<?php echo $this->url->get('dashboard/'); ?>">Home</a></li>
+                        <li><a href="<?php echo $this->url->get('locations/'); ?>">Addresses</a></li>
+                        <li><a href="<?php echo $this->url->get('readings/'); ?>">Readings</a></li>
                     </ul>
                     <form class="navbar-form navbar-right" action="<?php echo $this->url->get('index/signout'); ?>">
                         <button type="submit" class="btn btn-primary">Sign out</button>
@@ -33,7 +34,7 @@ a:5:{i:0;s:265:"<!DOCTYPE html>
         </div>
         <?php echo $this->flash->output(); ?>
         ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:12:"   
-        ";s:4:"file";s:49:"C:\wamp\www\APM/app/views/layouts\base_admin.volt";s:4:"line";i:36;}}i:2;s:73:"
+        ";s:4:"file";s:53:"C:\wamp\www\APM/app/views/layouts\base_dashboard.volt";s:4:"line";i:37;}}i:2;s:73:"
         <?php echo $this->assets->outputJs('js'); ?>
     </body>
 </html>";}

@@ -23,6 +23,7 @@ class SigninController extends ControllerBase
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
         $landingPage = '';
+        $message = '';
         
         $user = Users::findFirst([
             "email = :email: AND password = :password:",
@@ -33,7 +34,12 @@ class SigninController extends ControllerBase
         ]);
         
         if($user) {
+            $message = 'Hello, ' . $user->first_name . '. You are a ' . $user->type;
+            
             switch ($user->type) {
+                case 'guest':
+                    $landingPage = 'index/index';
+                    break;
                 case 'user':
                     $landingPage = 'dashboard/index';
                     break;
@@ -48,7 +54,7 @@ class SigninController extends ControllerBase
             $this->session->set('id', $user->id);
             $this->session->set('role', $user->type);
             
-            $this->flash->success('You are logged in!');
+            $this->flash->success($message);
             $this->response->redirect($landingPage);
             
             return;
