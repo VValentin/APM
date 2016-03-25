@@ -21,12 +21,12 @@ class ControllerBase extends Controller
         
         // Add JS
         $this->assets
-                ->collection('js')
-                ->addJs('js/jquery-2.2.1.min.js', false, false)
-                ->addJs('js/bootstrap.min.js', false, false)
-                ->setTargetPath('js/production.js')
-                ->setTargetUri('js/production.js')
-                ->join(true)
-                ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
+            ->collection('js')
+            ->addJs('js/jquery-2.2.1.min.js', false, false)
+            ->addJs('js/bootstrap.min.js', false, false)
+            ->setTargetPath('js/production.js')
+            ->setTargetUri('js/production.js')
+            ->join(true)
+            ->addFilter(new \Phalcon\Assets\Filters\Jsmin());
     }
 }
