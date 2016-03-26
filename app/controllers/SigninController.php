@@ -17,6 +17,40 @@ class SigninController extends ControllerBase
         Parent::initialize();
     }
     
+    private function _createUserSession(Users $user, $type) 
+    {
+        $message = '';
+        
+        if($type == 'login') {
+            $message = 'Hello, ' . $user->first_name . '. You are a ' . $user->type;
+        }
+        
+        if($type == 'register') {
+           $message = 'Hello. Your account was successfully created. Please log in';
+        }
+        
+        switch ($user->type) {
+            case 'guest':
+                $landingPage = 'index/index';
+                break;
+            case 'user':
+                $landingPage = 'dashboard/index';
+                break;
+            case 'admin':
+                $landingPage = 'admin/index';
+                break;
+            default:
+                $landingPage = 'signin/create';
+                break;
+        }
+
+        $this->session->set('id', $user->id);
+        $this->session->set('role', $user->type);
+
+        $this->flash->success($message);
+        $this->response->redirect($landingPage);
+    }
+    
     public function doSigninAction()
     {
         if($this->security->checkToken() == false) {
@@ -35,29 +69,7 @@ class SigninController extends ControllerBase
         
         if ($user) {
             if($this->security->checkHash($password, $user->password)) {
-                $message = 'Hello, ' . $user->first_name . '. You are a ' . $user->type;
-            
-                switch ($user->type) {
-                    case 'guest':
-                        $landingPage = 'index/index';
-                        break;
-                    case 'user':
-                        $landingPage = 'dashboard/index';
-                        break;
-                    case 'admin':
-                        $landingPage = 'admin/index';
-                        break;
-                    default:
-                        $landingPage = 'signin/create';
-                        break;
-                }
-
-                $this->session->set('id', $user->id);
-                $this->session->set('role', $user->type);
-
-                $this->flash->success($message);
-                $this->response->redirect($landingPage);
-
+                $this->_createUserSession($user, 'login');
                 return;
             }
         }
@@ -70,6 +82,55 @@ class SigninController extends ControllerBase
     {
         Tag::setTitle('Create account');
         $this->assets->collection('additional')->addCss('css/signin.css');
+    }
+    
+    public function doRegisterAction()
+    {
+        if($this->security->checkToken() == false) {
+            $this->flash->error('Invalid CSRF token');
+            $this->response->redirect("signin/register");
+            return;
+        }
+        
+        $this->view->disable();
+        
+        $firstName = $this->request->getPost('first_name');
+        $lastName = $this->request->getPost('last_name');
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+        $confirmPassword = $this->request->getPost('confirm_password');
+        $landingPage = '';
+        $message = '';
+        
+        if ($password !== $confirmPassword) {
+            $this->flash->error('Passwords do not match');
+            $this->response->redirect("signin/register");
+            return;
+        }
+        
+        $user = new Users();
+        $user->first_name = $firstName;
+        $user->last_name = $lastName;
+        $user->email = $email;
+        $user->password = $this->security->hash($password);
+        $user->type = 'user';
+        
+        $result = $user->save();
+        
+        if(!$result) {
+            $output = [];
+            foreach($user->getMessages() as $message) {
+                $output[] = $message;
+            }
+            $output = implode(', ', $output);
+            $this->flash->error($output);
+            $this->response->redirect("signin/register");
+            return;
+        }
+        
+        $this->_createUserSession($user, 'login');
+        return;
+        
     }
 }
 

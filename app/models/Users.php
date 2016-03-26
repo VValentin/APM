@@ -1,6 +1,8 @@
 <?php
 
 use Phalcon\Mvc\Model\Validator\Email as Email;
+use Phalcon\Mvc\Model\Validator\Uniqueness as Uniqueness;
+use Phalcon\Mvc\Model\Validator\StringLength as StringLength;
 
 class Users extends \Phalcon\Mvc\Model
 {
@@ -278,6 +280,15 @@ class Users extends \Phalcon\Mvc\Model
                 array(
                     'field'    => 'email',
                     'required' => true,
+                )
+            )
+        );
+        
+        $this->validate(
+            new Uniqueness(
+                array(
+                    'field'    => 'email',
+                    'message' => 'The email is already in use.',
                 )
             )
         );
