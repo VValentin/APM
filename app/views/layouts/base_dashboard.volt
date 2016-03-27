@@ -23,7 +23,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url('dashboard/') }}">Home</a></li>
-                        <li><a href="{{ url('locations/') }}">Addresses</a></li>
+                        <li><a href="{{ url('addresses/') }}">Addresses</a></li>
                         <li><a href="{{ url('readings/') }}">Readings</a></li>
                     </ul>
                     <form class="navbar-form navbar-right" action="{{ url('index/signout') }}">

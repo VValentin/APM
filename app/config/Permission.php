@@ -24,7 +24,8 @@ class Permission extends Plugin
         'signin' => ['*']
     ];
     protected $_userResources = [
-        'dashboard' => ['*']
+        'dashboard' => ['*'],
+        'addresses' => ['*']
     ];
     protected $_adminResources = [
         'admin' => ['*']
