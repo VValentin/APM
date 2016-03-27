@@ -19,6 +19,12 @@ class Addresses extends \Phalcon\Mvc\Model
      *
      * @var string
      */
+    protected $city;
+    
+    /**
+     *
+     * @var string
+     */
     protected $street;
 
     /**
@@ -79,6 +85,19 @@ class Addresses extends \Phalcon\Mvc\Model
     public function setUserId($user_id)
     {
         $this->user_id = $user_id;
+
+        return $this;
+    }
+    
+    /**
+     * Method to set the value of field city
+     *
+     * @param string $city
+     * @return $this
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
 
         return $this;
     }
@@ -193,6 +212,16 @@ class Addresses extends \Phalcon\Mvc\Model
     {
         return $this->user_id;
     }
+    
+    /**
+     * Returns the value of field city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
 
     /**
      * Returns the value of field street
@@ -297,6 +326,14 @@ class Addresses extends \Phalcon\Mvc\Model
     }
 
     /**
+     * Initialize method for model.
+     */
+    public function initialize()
+    {
+        $this->belongsTo("user_id", "Users", "id");
+    }
+    
+    /**
      * Independent Column Mapping.
      * Keys are the real names in the table and the values their names in the application
      *
@@ -307,6 +344,7 @@ class Addresses extends \Phalcon\Mvc\Model
         return array(
             'id' => 'id',
             'user_id' => 'user_id',
+            'city' => 'city',
             'street' => 'street',
             'number' => 'number',
             'building' => 'building',

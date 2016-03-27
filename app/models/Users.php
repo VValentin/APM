@@ -329,6 +329,14 @@ class Users extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+    
+    /**
+     * Initialize method for model.
+     */
+    public function initialize()
+    {
+        $this->hasMany('id', 'Addresses', 'users_id');
+    }
 
     /**
      * Independent Column Mapping.

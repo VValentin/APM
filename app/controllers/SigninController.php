@@ -17,17 +17,9 @@ class SigninController extends ControllerBase
         Parent::initialize();
     }
     
-    private function _createUserSession(Users $user, $type) 
+    private function _createUserSession(Users $user) 
     {
-        $message = '';
-        
-        if($type == 'login') {
-            $message = 'Hello, ' . $user->first_name . '. You are a ' . $user->type;
-        }
-        
-        if($type == 'register') {
-           $message = 'Hello. Your account was successfully created. Please log in';
-        }
+        $message = 'Welcome, ' . $user->first_name;
         
         switch ($user->type) {
             case 'guest':
@@ -69,7 +61,7 @@ class SigninController extends ControllerBase
         
         if ($user) {
             if($this->security->checkHash($password, $user->password)) {
-                $this->_createUserSession($user, 'login');
+                $this->_createUserSession($user);
                 return;
             }
         }
@@ -99,8 +91,6 @@ class SigninController extends ControllerBase
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
         $confirmPassword = $this->request->getPost('confirm_password');
-        $landingPage = '';
-        $message = '';
         
         if ($password !== $confirmPassword) {
             $this->flash->error('Passwords do not match');
@@ -128,7 +118,7 @@ class SigninController extends ControllerBase
             return;
         }
         
-        $this->_createUserSession($user, 'login');
+        $this->_createUserSession($user);
         return;
         
     }
