@@ -32,9 +32,9 @@
                 </div><!--/.navbar-collapse -->
             </div>
         </div>
+        {{ this.assets.outputJs('js') }}
         {{ flash.output() }}
         {% block content %}   
         {% endblock %}
-        {{ this.assets.outputJs('js') }}
     </body>
 </html>

@@ -20,13 +20,24 @@ class AddressesController extends ControllerBase
         
         if(count($addresses) > 0) {
             $this->view->setVar('addresses_available', true);
-            $this->view->setVar('addresses', $addresses->toArray());
         } else {
             $this->view->setVar('addresses_available', false);
         }
+    }
+    
+    public function getAddressesAction() 
+    {
+        $addresses = Addresses::find();
+        $response = array();
         
-//        var_dump($addresses->toArray());
-//        die();
+        if(count($addresses) > 0) {
+            $response = $addresses->toArray();
+        } 
+        
+        $this->response->setContentType('application/json');
+        $this->response->setJsonContent($response);
+        
+        return $this->response;
     }
     
     public function newAddressAction()
